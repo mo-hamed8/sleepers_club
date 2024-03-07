@@ -2,7 +2,6 @@
 
 if(isset($_POST["submit"])){
     if(isset($_POST["name"])){
-        echo "F";
         require "Upload.php";
         require "connect_db.php";
 

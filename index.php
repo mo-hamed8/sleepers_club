@@ -1,3 +1,25 @@
+<?php
+
+require "connect_db.php";
+$sql = "SELECT name,artist,path FROM sounds";
+$result = $conn->query($sql);
+
+$sounds_list=[];
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $sounds_list=["name"=>$row["name"],"artist"=>$row["artist"],"img"=>"images/2.jpg","src"=>$row["path"]];
+  }
+} else {
+  echo "0 results";
+}
+$conn->close();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +70,7 @@
         <i class="material-icons">queue_music</i>
       </div>
     </div>
-    <script src="js/music-list.js"></script>
+    <script>let allMusic=[<?php echo json_encode($sounds_list); ?>]</script>
     <script src="js/main.js"></script>
   </body>
 </html>
